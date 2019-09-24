@@ -1,7 +1,7 @@
 # mystory-FlaskWebApp
 Social media web application built on Flask and html5.up's HTML5 template
 
-Click [here](/Resources/Mobile_Demo.mov) for demo
+Click [here](https://vimeo.com/361941506) for demo
 
 ![](https://i.imgur.com/itRaXhu.png?1)
 
