@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<!--
+	HTML5UP: @ajlkn
+	adopted by @cullen-s
+-->
+<html>
+	<head>
+		<title>Delete Your Story</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Wrapper -->
+					<div id="wrapper">
+
+						<!-- Panel -->
+							<section class="panel color2" id="newtile">
+								<div class="inner columns aligned">
+									<div class="span-4-5">
+										<h3 class="major">Delete my Post</h3>
+										<form method="post" action = "{{ url_for('deletepost') }}">
+											<div class="fields">
+												<div class="field">
+													<label for="name">Enter your E-mail</label>
+													<input type="email" name="email" id="email" value="" placeholder="user@domain.com" /><br>
+													<label for="name">Enter the my.storyID sent to your E-mail</label>
+													<input type="text" name="id" id="id" value="" placeholder="1234" />
+													<p>Deleted posts cannot be recovered!</p>
+												</div>
+											</div>
+											<ul class="actions">
+												<li><input type="submit" value="Delete" class="primary color1" /></li>
+											</ul>
+											<button type="button" class="secondary color1" onclick="location.href='/'">Cancel</button>
+										</form>
+
+
+{%- for category, message in get_flashed_messages(with_categories = true) %}
+         <div class = "alert alert-danger" style="color: red;">
+            {{ message }}
+         </div>
+{%- endfor %}
+
+
+
+									</div>
+								</div>
+							</section>
+
+						<!-- Copyright -->
+							<div class="copyright">&copy; My.Story 2019 Want to delete your post? <a href="{{ url_for('deletepost') }}">Click here</a>.</div>
+
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+			<script type="text/javascript">
+				var text = ["Everyone <br> has a story", 
+							"Todos tienen una historia", 
+							"У каждого есть история",
+							"Tout le monde a une histoire",
+							"Jeder hat eine Geschichte"];
+				var ctr = 0;
+				var elem = document.getElementById("everyonetext");
+				var inst = setInterval(change, 2000);
+
+				function change() {
+  				elem.innerHTML = text[ctr];
+  				ctr++;
+  				if (ctr >= text.length) {
+    				ctr = 0;
+  				}
+			}
+			</script>
+	</body>
+</html>

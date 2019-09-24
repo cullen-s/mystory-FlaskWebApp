@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<!--
+	HTML5UP: @ajlkn
+	adopted by @cullen-s
+-->
+<html>
+	<head>
+		<title>my.story</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Wrapper -->
+					<div id="wrapper">
+
+						<!-- Welcome card -->
+							<section class="panel color1 banner right">
+								<div class="content span-3-75">
+									<h1 class="major" id="everyonetext">Everyone<br />
+									has a story</h1>
+									<p>The best stories are those shared with others. This is <strong>my.story</strong>, a place where you can instantly share those memories with everyone.</p>
+									<ul class="actions">
+										<li><a href="#newtile" class="button primary color2">Share a new story</a></li>
+										<li><a href="#tile2" class="button primary color1 ">Show me a random story</a></li>
+									</ul>
+											{% for error in form.name.errors %}
+											<span class="alert alert-danger alert-dismissible fade show" role="alert">
+											{{ error }}
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    										 <span aria-hidden="true">&times;</span>
+  											</button>
+											</span>
+											{% endfor %}
+											{% for error in form.title.errors %}
+											<span class="alert alert-danger alert-dismissible fade show" role="alert">
+											{{ error }}
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    										 <span aria-hidden="true">&times;</span>
+  											</button>
+											</span>
+											{% endfor %}
+											{% for error in form.email.errors %}
+											<span class="alert alert-danger alert-dismissible fade show" role="alert">
+											{{ error }}
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    										 <span aria-hidden="true">&times;</span>
+  											</button>
+											</span>
+											{% endfor %}
+											{% for error in form.story.errors %}
+											<span class="alert alert-danger alert-dismissible fade show" role="alert">
+											{{ error }}
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    										 <span aria-hidden="true">&times;</span>
+  											</button>
+											</span>
+											{% endfor %}
+											{% for error in form.imgurl.errors %}
+											<span class="alert alert-danger alert-dismissible fade show" role="alert">
+											{{ error }}
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    										 <span aria-hidden="true">&times;</span>
+  											</button>
+											</span>
+											{% endfor %}
+											{% for win in win %}
+											<span class="alert alert-success alert-dismissible fade show" role="alert">
+											{{ win }}
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    										 <span aria-hidden="true">&times;</span>
+  											</button>
+											</span>
+											{% endfor %}
+								</div>
+							</section>
+
+						<!-- Example card -->
+							<section class="panel spotlight medium right" id="tile1">
+								<div class="content span-7">
+									<h2 class="major">I finished my first 5K</h2>
+									<h5>By: Demo User</h5>
+									<p>Today I ran my first 5k marathon! Nulla hendrerit erat quis ante aliquam suscipit. Nunc ac mi at eros euismod fermentum aliquam a orci. Praesent varius vulputate erat. Donec id nulla eget lectus interdum tincidunt sed a tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.  <br><br><strong>This tile shows how a user can choose a custom background for their story. A filter is applied to make sure the text is readable most of the time.</strong></p>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="{{ url_for('static', filename='assets/images/running_upload.jpg') }}" alt="" />
+								</div>
+							</section>
+
+						<!-- Example Card -->
+							<section class="panel spotlight large left" id="tile2">
+								<div class="content span-5">
+									<h2 class="major">Today is my daughter's 2nd birthday</h2>
+									<h5>By: Demo User</h5>
+									<p>Mauris a cursus velit. Nunc lacinia sollicitudin egestas bibendum, magna dui bibendum ex, sagittis commodo enim risus sed magna nulla. Vestibulum ut consequat velit. Curabitur vitae libero lorem. Quisque iaculis porttitor blandit. Nullam quis sagittis maximus. Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. <br><br><strong>This is a large tile for wide backgrounds. The user chose to put their text on the left side of this tile, that way the white background does not interfere with the white text!</strong>
+									</p>
+								</div>
+								<div class="image filtered tinted" data-position="top right">
+									<img src="{{ url_for('static', filename='assets/images/birthdaycake_upload.jpg') }}" alt="" />
+								</div>
+							</section>
+
+<!-- iterate through postsdb -->
+							{% for post in posts %}
+						<!-- Panel (Spotlight) -->
+							<section class="panel spotlight medium right" id="tile1">
+								<div class="content span-7">
+									<h2 class="major">{{ post.title }}</h2>
+									<h5>By: {{ post.name }} on {{post.postdate}}</h5>
+									<p> {{ post.story }} </p>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="{{ post.imgurl }}" id="userUploadedImage"alt=" " />
+								</div>
+							</section>
+							{% endfor %}
+<!-- end of posts -->
+
+						
+						<!-- New Post card -->
+							<section class="panel color1" id="newtile">
+								<div class="inner columns aligned">
+									<div class="span-4-5">
+										<h3 class="major">Post a New Story</h3>
+										<!--<form method="post" action = "{{ request.path }}"> -->
+											<form method="post" enctype="multipart/form-data">
+
+											<div class="fields">
+												<div class="field third">
+													<label for="name">{{form.name.label}}</label>
+													<!--<input type="text" name="name" id="story-name" value="" placeholder="Johnny Appleseed" maxlength="25" /> -->
+													{{form.name}}
+												</div>
+												<div class="field third">
+													<label for="title">{{form.title.label}}</label>
+													<!--<input type="text" name="title" id="story-title" value="" placeholder="Today I..." maxlength="50" /> -->
+													{{form.title}}
+												</div>
+												<div class="field third">
+													<label for="title" id="titlelabel">{{form.email.label}}</label>
+													<!--<input type="email" name="email" id="story-email" value="" placeholder="name@domain.com" /> -->
+													{{form.email}}
+												</div>
+												<div class="field">
+													<label for="content">{{form.story.label}}</label>
+													<!--<textarea name="story" id="story-content" placeholder="A good story is 1,000 characters or less!" rows="3" maxlength="1000"></textarea> -->
+													{{form.story}}
+												</div>
+												<h5><br>Advanced Options <a href="" data-toggle="modal" data-target="#howtopostmodal">(?)</a></h5>
+												<div class="field quarter" style="padding-top: 60px;">
+													<input type="checkbox" id="align-left" name="alignleft" class="color2" />
+													<label for="align-left">Align Left</label>
+												</div>
+												<div class="field quarter">
+													{{form.imgurl.label}}
+													<!-- <input type="text" name="imgurl" id="imgurl" value="" placeholder="https:// .jpg" /> -->
+													{{form.imgurl}}
+												</div>
+											</div>
+											<ul class="actions">
+												<li><input type="submit" value="share" class="primary color2" /></li>
+											</ul>
+										</form>
+									</div>
+								</div>
+							</section>
+
+						<!-- Copyright -->
+							<div class="copyright">&copy; My.Story 2019 --- Want to delete your post? <a href="{{ url_for('deletepost') }}">Click here</a>
+
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+			<!-- JS for welcome card title -->
+			<script type="text/javascript">
+				var text = ["Everyone <br> has a story", 
+							"Todos tienen una historia", 
+							"У каждого есть история",
+							"Tout le monde a une histoire",
+							"Jeder hat eine Geschichte"];
+				var ctr = 0;
+				var elem = document.getElementById("everyonetext");
+				var inst = setInterval(change, 2000);
+
+				function change() {
+  				elem.innerHTML = text[ctr];
+  				ctr++;
+  				if (ctr >= text.length) {
+    				ctr = 0;
+  				}
+			}
+			</script>
+
+
+			<!--How To Post Modal -->
+<div class="modal fade" id="howtopostmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel" style="color:black">Help</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color:black"><strong style="color:black">What is a card?</strong> a card is the container which your post will live in. You can customize your tile using the options provided.</p>
+    	<p style="color:black"><strong style="color:black">Alignment:</strong></p>
+    	<div class="container">
+    		<img src="{{ url_for('static', filename='assets/images/default_alignment.png') }}" class="rounded float-left" style="width:150px; height: 100px;">
+    		<img src="{{ url_for('static', filename='assets/images/left_alignment.png') }}" class="rounded float-right" style="width:150px; height: 100px;">
+    	</div>
+    	<br><br><br><br>
+    	<p style="color:black"><strong style="color:black">Default Text Alignment</strong> is to the right, choosing <strong style="color:black">Left Align</strong> will align your text to the left. This is great for images that have more detail on the right side of the image.</p>
+        <p style="color:black"><strong style="color:black">Image Upload</strong> To add a custom background to your story, please copy and paste the image's URL from the web. For example, <i>https://google.com/image.jpg</i> would be a valid image</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="primary color1" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
